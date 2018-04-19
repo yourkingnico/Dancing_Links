@@ -2,7 +2,15 @@
 import sys
 import unittest
 
-
+class Node:
+	""" TODO: Eric implement""" 
+class Head:
+	""" TODO: Eric implement"""
+class Matrix:
+	"""TODO: Mason implement """ 
+	
+class AlgorithmX:
+	"""TODO: implement """ 
 def generic_x(matrix):
 	""" 
 		TODO: implement this and additional data structures

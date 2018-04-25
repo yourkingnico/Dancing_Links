@@ -26,29 +26,47 @@ def generic_x(matrix):
 	return None 
 
 class AlgorithmXTest( unittest.TestCase):
-	
+
+	def test_node(self):
+		"""
+		TODO: instantiate node with init function, check values
+		""" 
+		
+	def test_head(self):
+		"""
+		TODO: instantiate head with init function, check values
+		v
+		""" 
+	def test_matrix(self):
+		"""
+		TODO: instantiate matrix with init function, check values
+		v
+		""" 	
+		
 	def test_generic_x_4(self):
 		"""
 		TODO: pass in 4x4 matrix, and expect result to be empty matrix
 		""" 
-		self.assertEqual( generic_x(), 92)
+		self.assertEqual( generic_x(), [ [], [], [], [] ])
 		
 	def test_generic_x_6(self):
 		"""
 		TODO: pass in 6x6 matrix, and expect result to be empty matrix
 		"""
-		self.assertEqual( generic_x(), 92)
+		self.assertEqual( generic_x(),  [ [], [], [],  [], [], [] ])
 		
 	def test_generic_x_8(self):
 		"""
 		TODO: pass in 8x8 matrix, and expect result to be empty matrix
 		"""
-		self.assertEqual( generic_x(), 92)
+		self.assertEqual( generic_x(), [ [], [], [], [], [],  [], [], [] ])
 		
 	"""
 		TODO: Create additional test for unsolvable constraints. 
 	""" 
-		
+	
+def main():
+	unittest.main()	
 		
 if __name__ == '__main__':
 	unittest.main()

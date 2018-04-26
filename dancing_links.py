@@ -3,9 +3,25 @@ import sys
 import unittest
 
 class Node:
-	""" TODO: Eric implement""" 
+	def __init__(self, row, col):
+		self.row, self.col = row, col
+
+	def deattach(self):
+		self.up.down = self.down
+		self.down.up = self.up
+
+	def attach(self):
+		self.down.up = self.up.down = self
 class Head:
-	""" TODO: Eric implement"""
+	def __init__(self, col):
+		self.col = col
+
+	def deattach(self):
+		self.left.right = self.right
+		self.right.left = self.left
+
+	def attach(self):
+		self.right.left = self.left.right = self
 class Matrix:
 	"""TODO: Mason implement """ 
 	

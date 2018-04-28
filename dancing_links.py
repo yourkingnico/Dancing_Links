@@ -4,7 +4,8 @@ import unittest
 
 class Node:
 	def __init__(self, row, col):
-		self.row, self.col = row, col
+		self.row = row
+		self.col = col
 
 	def deattach(self):
 		self.up.down = self.down
@@ -12,6 +13,7 @@ class Node:
 
 	def attach(self):
 		self.down.up = self.up.down = self
+		
 class Head:
 	def __init__(self, col):
 		self.col = col
@@ -22,6 +24,7 @@ class Head:
 
 	def attach(self):
 		self.right.left = self.left.right = self
+		
 class Matrix:
 	"""TODO: Mason implement """ 
 	def linkLeftRight(self, srows):
@@ -46,7 +49,7 @@ class Matrix:
 		heads = [Head(j) for j in range(ncols)]        
 		scol = [[head] for head in heads]
 
-		# Head of the column heads
+		# Master Head 
 		self.head = Head(-1)
 		heads = [self.head] + heads
 		self.linkLeftRight([heads])
@@ -80,15 +83,20 @@ def generic_x(matrix):
 class AlgorithmXTest( unittest.TestCase):
 
 	def test_node(self):
-		"""
-		TODO: instantiate node with init function, check values
-		""" 
+		my_node = Node(0,0)
+		self.assertEqual(my_node.row, 0)
+		self.assertEqual(my_node.col, 0)
+		
+	def test_node_attach(self):
+		""""create up down links first? 
+		#test_node = Node(0,0)
+		#test_node.attach()
+		#self.assertEqual(test_node.down.up, self)"""
 		
 	def test_head(self):
-		"""
-		TODO: instantiate head with init function, check values
-		v
-		""" 
+		test_head = Head(0)
+		self.assertEqual(test_head.col, 0)
+		
 	def test_matrix(self):
 		"""
 		TODO: instantiate matrix with init function, check values

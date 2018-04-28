@@ -97,11 +97,9 @@ class AlgorithmXTest( unittest.TestCase):
 		test_head = Head(0)
 		self.assertEqual(test_head.col, 0)
 		
-	def test_matrix(self):
-		"""
-		TODO: instantiate matrix with init function, check values
-		v
-		""" 	
+	def test_matrix_head(self):
+		test_matrix = Matrix([ [1, 0], [0, 1] ])
+		self.assertEqual(test_matrix.head.col, -1)
 		
 	def test_generic_x_4(self):
 		"""

@@ -25,43 +25,41 @@ class Head:
 class Matrix:
 	"""TODO: Mason implement """ 
 	def linkLeftRight(self, srows):
-        for srow in srows:
-            n = len(srow)
-            for j in range(n):
-                srow[j].right = srow[(j + 1) % n]
-                srow[j].left = srow[(j - 1 + n) % n]
-             
-    def linkUpDown(self, scols):
-        for scol in scols:
-            n = len(scol)
-            for i in range(n):
-                scol[i].down = scol[(i + 1) % n]
-                scol[i].up = scol[(i - 1 + n) % n]
-                scol[i].head = scol[0]
-         
-    def __init__(self, mat):
-         
-        nrows = len(mat)
-        ncols = len(mat[0])
-        srow = [[ ] for _ in range(nrows)]
-        heads = [Head(j) for j in range(ncols)]        
-        scol = [[head] for head in heads]
- 
-        # Head of the column heads
-        self.head = Head(-1)
-        heads = [self.head] + heads
-             
-        self.linkLeftRight([heads])
-             
-        for i in range(nrows):
-            for j in range(ncols):
-                if mat[i][j] == 1:
-                    node = Node(i, j)
-                    scol[j].append(node)
-                    srow[i].append(node)
- 
-        self.linkLeftRight(srow)
-        self.linkUpDown(scol)
+		for srow in srows:
+			n = len(srow)
+			for j in range(n):
+				srow[j].right = srow[(j + 1) % n]
+				srow[j].left = srow[(j - 1 + n) % n]
+
+	def linkUpDown(self, scols):
+		for scol in scols:
+			n = len(scol)
+			for i in range(n):
+				scol[i].down = scol[(i + 1) % n]
+				scol[i].up = scol[(i - 1 + n) % n]
+				scol[i].head = scol[0]
+
+	def __init__(self, mat):
+		nrows = len(mat)
+		ncols = len(mat[0])
+		srow = [[ ] for _ in range(nrows)]
+		heads = [Head(j) for j in range(ncols)]        
+		scol = [[head] for head in heads]
+
+		# Head of the column heads
+		self.head = Head(-1)
+		heads = [self.head] + heads
+		self.linkLeftRight([heads])
+
+		for i in range(nrows):
+			for j in range(ncols):
+				if mat[i][j] == 1:
+					node = Node(i, j)
+					scol[j].append(node)
+					srow[i].append(node)
+
+		self.linkLeftRight(srow)
+		self.linkUpDown(scol)
 	
 class AlgorithmX:
 	"""TODO: implement """ 

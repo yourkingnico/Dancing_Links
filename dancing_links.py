@@ -168,7 +168,7 @@ class AlgorithmXTest(unittest.TestCase):
 		right = col[0][0]
 		right = right.right
 		right = right.down
-		print(type(right))
+		self.assertEqual(type(right), Node)
 	
 	def test_master_head_node_down_link(self):
 		test_matrix = Matrix([ [1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [1, 0, 0,1] ])

@@ -26,25 +26,6 @@ class Head:
 		self.right.left = self.left.right = self
 		
 class Matrix:
-	def linkLeftRight(self, srows):
-		for srow in srows:
-			n = len(srow)
-			j = 1 
-			while j < n:
-				srow[j].right = srow[(j + 1) % n]
-				srow[j].left = srow[(j - 1 + n) % n]
-				j +=1
-
-	def linkUpDown(self, scols):
-		for scol in scols:
-			n = len(scol)
-			i = 1
-			while i < n:
-				scol[i].down = scol[(i + 1) % n]
-				scol[i].up = scol[(i - 1 + n) % n]
-				scol[i].head = scol[0]
-				i += 1
-
 	def __init__(self, matrix):
 		numberOfRows = len(matrix)
 		numberOfColumns = len(matrix[0])
@@ -69,6 +50,27 @@ class Matrix:
 
 		self.linkLeftRight(srow)
 		self.linkUpDown(scol)
+		
+		
+	def linkLeftRight(self, srows):
+		for srow in srows:
+			n = len(srow)
+			j = 1 
+			while j < n:
+				srow[j].right = srow[(j + 1) % n]
+				srow[j].left = srow[(j - 1 + n) % n]
+				j +=1
+
+	def linkUpDown(self, scols):
+		for scol in scols:
+			n = len(scol)
+			i = 1
+			while i < n:
+				scol[i].down = scol[(i + 1) % n]
+				scol[i].up = scol[(i - 1 + n) % n]
+				scol[i].head = scol[0]
+				i += 1
+
 	
 class AlgorithmX:
 	"""TODO: implement """ 

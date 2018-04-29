@@ -83,7 +83,7 @@ class Matrix:
 		"""
 		for srow in srows:
 			n = len(srow)
-			j = 1 
+			j = 0
 			while j < n:
 				srow[j].right = srow[(j + 1) % n]
 				srow[j].left = srow[(j - 1 + n) % n]
@@ -97,7 +97,7 @@ class Matrix:
 		"""
 		for column in columns:
 			n = len(column)
-			i = 1
+			i = 0
 			while i < n:
 				column[i].down = column[(i + 1) % n]
 				column[i].up = column[(i - 1 + n) % n]
@@ -121,7 +121,8 @@ def generic_x(matrix):
 
 	return None 
 
-class AlgorithmXTest( unittest.TestCase):
+
+class AlgorithmXTest(unittest.TestCase):
 
 	def test_node(self):
 		""" Make a Node  """
@@ -142,8 +143,8 @@ class AlgorithmXTest( unittest.TestCase):
 	def test_matrix_head_links(self):
 		test_matrix = Matrix([ [1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [1, 0, 0,1] ])
 		col = test_matrix.columns
-		right = col[0][0].right
-		print(type(right))
+		right = col[0][0]
+		print(right.left.left.column)
 		
 		
 

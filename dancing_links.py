@@ -4,29 +4,50 @@ import unittest
 
 class Node:
 	def __init__(self, row, col):
+		""" Initialize a Node
+
+		:param row: the row of the node
+		:param col: the column of the node
+		:type row: list
+		:type col: list
+		"""
 		self.row = row
 		self.col = col
 
 	def deattach(self):
+		""" Deattach the Node """
 		self.up.down = self.down
 		self.down.up = self.up
 
 	def attach(self):
+		""" Attach the Node """
 		self.down.up = self.up.down = self
 		
 class Head:
 	def __init__(self, col):
+		""" Initialize a Head
+
+		:param col: the column that will be the head
+		:type col: int
+		"""
 		self.col = col
 
 	def deattach(self):
+		""" Deattach the Head """
 		self.left.right = self.right
 		self.right.left = self.left
 
 	def attach(self):
+		""" Attach the Head """
 		self.right.left = self.left.right = self
 		
 class Matrix:
 	def __init__(self, matrix):
+		""" Initialize a Matrix
+
+		:param matrix: the matrix being initialized
+		:type matrix: list
+		"""
 		numberOfRows = len(matrix)
 		numberOfColumns = len(matrix[0])
 		srow = [[ ] for _ in range(numberOfRows)]
@@ -53,6 +74,11 @@ class Matrix:
 		
 		
 	def linkLeftRight(self, srows):
+		""" link the rows on the left and right
+
+		:param srows: the rows being linked
+		:type srows: list
+		"""
 		for srow in srows:
 			n = len(srow)
 			j = 1 
@@ -62,6 +88,11 @@ class Matrix:
 				j +=1
 
 	def linkUpDown(self, scols):
+		""" link the columns up and down
+
+		:param scols: the columns being linked
+		:type scols: list
+		"""
 		for scol in scols:
 			n = len(scol)
 			i = 1
@@ -91,21 +122,25 @@ def generic_x(matrix):
 class AlgorithmXTest( unittest.TestCase):
 
 	def test_node(self):
+		""" Make a Node  """
 		my_node = Node(0,0)
 		self.assertEqual(my_node.row, 0)
 		self.assertEqual(my_node.col, 0)
 		
 	def test_node_attach(self):
+		""" Attach a Node to itself """
 		""""create up down links first? 
 		#test_node = Node(0,0)
 		#test_node.attach()
 		#self.assertEqual(test_node.down.up, self)"""
 		
 	def test_head(self):
+		""" Set the Head """
 		test_head = Head(0)
 		self.assertEqual(test_head.col, 0)
 		
 	def test_matrix_head(self):
+		""" Make sure head is right for a 2x2 matrix """
 		test_matrix = Matrix([ [1, 0], [0, 1] ])
 		self.assertEqual(test_matrix.head.col, -1)
 		

@@ -75,18 +75,18 @@ class Matrix:
 		self.columns = column
 		
 		
-	def linkLeftRight(self, srows):
+	def linkLeftRight(self, rows):
 		""" link the rows on the left and right
 
-		:param srows: the rows being linked
-		:type srows: list
+		:param rows: the rows being linked
+		:type rows: list
 		"""
-		for srow in srows:
-			n = len(srow)
+		for row in rows:
+			n = len(row)
 			j = 0
 			while j < n:
-				srow[j].right = srow[(j + 1) % n]
-				srow[j].left = srow[(j - 1 + n) % n]
+				row[j].right = row[(j + 1) % n]
+				row[j].left = row[(j - 1 + n) % n]
 				j +=1
 
 	def linkUpDown(self, columns):

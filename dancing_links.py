@@ -3,16 +3,16 @@ import sys
 import unittest
 
 class Node:
-	def __init__(self, row, col):
+	def __init__(self, row, column):
 		""" Initialize a Node
 
 		:param row: the row of the node
-		:param col: the column of the node
+		:param column: the column of the node
 		:type row: list
-		:type col: list
+		:type column: list
 		"""
 		self.row = row
-		self.col = col
+		self.column = column
 
 	def deattach(self):
 		""" Deattach the Node """
@@ -24,13 +24,13 @@ class Node:
 		self.down.up = self.up.down = self
 		
 class Head:
-	def __init__(self, col):
+	def __init__(self, column):
 		""" Initialize a Head
 
-		:param col: the column that will be the head
-		:type col: int
+		:param column: the column that will be the head
+		:type column: int
 		"""
-		self.col = col
+		self.column = column
 
 	def deattach(self):
 		""" Deattach the Head """
@@ -50,9 +50,9 @@ class Matrix:
 		"""
 		numberOfRows = len(matrix)
 		numberOfColumns = len(matrix[0])
-		srow = [[ ] for _ in range(numberOfRows)]
+		row = [[ ] for _ in range(numberOfRows)]
 		heads = [Head(j) for j in range(numberOfColumns)]
-		scol = [[head] for head in heads]
+		column = [[head] for head in heads]
 
 		# Master Head 
 		self.head = Head(-1)
@@ -64,13 +64,13 @@ class Matrix:
 			while j < numberOfColumns:
 				if matrix[i][j] == 1:
 					node = Node(i, j)
-					scol[j].append(node)
-					srow[i].append(node)
+					column[j].append(node)
+					row[i].append(node)
 				j += 1
 			i += 1
 
-		self.linkLeftRight(srow)
-		self.linkUpDown(scol)
+		self.linkLeftRight(row)
+		self.linkUpDown(column)
 		
 		
 	def linkLeftRight(self, srows):
@@ -87,19 +87,19 @@ class Matrix:
 				srow[j].left = srow[(j - 1 + n) % n]
 				j +=1
 
-	def linkUpDown(self, scols):
+	def linkUpDown(self, columns):
 		""" link the columns up and down
 
-		:param scols: the columns being linked
-		:type scols: list
+		:param columns: the columns being linked
+		:type columns: list
 		"""
-		for scol in scols:
-			n = len(scol)
+		for column in columns:
+			n = len(column)
 			i = 1
 			while i < n:
-				scol[i].down = scol[(i + 1) % n]
-				scol[i].up = scol[(i - 1 + n) % n]
-				scol[i].head = scol[0]
+				column[i].down = column[(i + 1) % n]
+				column[i].up = column[(i - 1 + n) % n]
+				column[i].head = column[0]
 				i += 1
 
 	
@@ -125,7 +125,7 @@ class AlgorithmXTest( unittest.TestCase):
 		""" Make a Node  """
 		my_node = Node(0,0)
 		self.assertEqual(my_node.row, 0)
-		self.assertEqual(my_node.col, 0)
+		self.assertEqual(my_node.column, 0)
 		
 	def test_node_attach(self):
 		""" Attach a Node to itself """
@@ -137,12 +137,12 @@ class AlgorithmXTest( unittest.TestCase):
 	def test_head(self):
 		""" Set the Head """
 		test_head = Head(0)
-		self.assertEqual(test_head.col, 0)
+		self.assertEqual(test_head.column, 0)
 		
 	def test_matrix_head(self):
 		""" Make sure head is right for a 2x2 matrix """
 		test_matrix = Matrix([ [1, 0], [0, 1] ])
-		self.assertEqual(test_matrix.head.col, -1)
+		self.assertEqual(test_matrix.head.column, -1)
 		
 	"""def test_generic_x_4(self):
 		

@@ -161,6 +161,32 @@ class AlgorithmXTest(unittest.TestCase):
 			num = num +1
 			next_head = next_head.right
 		self.assertEqual(num, 4)
+	
+	def test_node_links(self):
+		test_matrix = Matrix([ [1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [1, 0, 0,1] ])
+		col = test_matrix.columns
+		right = col[0][0]
+		right = right.right
+		right = right.down
+		print(type(right))
+	
+	def test_master_head_node_down_link(self):
+		test_matrix = Matrix([ [1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [1, 0, 0,1] ])
+		col = test_matrix.columns
+		right = col[0][0]
+		right = right.down
+		self.assertEqual(right, col[0][0])
+		right = right.down
+		self.assertEqual(right, col[0][0])
+	
+	def test_master_head_node_up_link(self):
+		test_matrix = Matrix([ [1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [1, 0, 0,1] ])
+		col = test_matrix.columns
+		right = col[0][0]
+		right = right.up
+		self.assertEqual(right, col[0][0])
+		right = right.up
+		self.assertEqual(right, col[0][0])
 		
 
 def main():

@@ -140,12 +140,27 @@ class AlgorithmXTest(unittest.TestCase):
 		test_matrix = Matrix([ [1, 0], [0, 1] ])
 		self.assertEqual(test_matrix.head.column, -1)
 		
-	def test_matrix_head_links(self):
-		test_matrix = Matrix([ [1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [1, 0, 0,1] ])
+	def test_matrix_head_links_left(self):
+		test_matrix = Matrix([ [1, 1, 1, 1], [0, 1, 1, 1], [0, 0, 1, 0], [1, 0, 0,1] ])
 		col = test_matrix.columns
-		right = col[0][0]
-		print(right.left.left.column)
+		test_head = col[0][0].left
+		next_head = test_head.left
+		num = 0
+		while(next_head.column is not -1):
+			num = num +1
+			next_head = next_head.left
+		self.assertEqual(num, 4)
 		
+	def test_matrix_head_links_right(self):
+		test_matrix = Matrix([ [1, 0, 1, 1], [0, 0, 1, 1], [1, 0, 0, 0], [1, 0, 0, 0] ])
+		col = test_matrix.columns
+		test_head = col[0][0].left
+		next_head = test_head.right
+		num = 0
+		while(next_head.column is not -1):
+			num = num +1
+			next_head = next_head.right
+		self.assertEqual(num, 4)
 		
 
 def main():

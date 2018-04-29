@@ -71,6 +71,8 @@ class Matrix:
 
 		self.linkLeftRight(row)
 		self.linkUpDown(column)
+		self.rows = row
+		self.columns = column
 		
 		
 	def linkLeftRight(self, srows):
@@ -127,13 +129,6 @@ class AlgorithmXTest( unittest.TestCase):
 		self.assertEqual(my_node.row, 0)
 		self.assertEqual(my_node.column, 0)
 		
-	def test_node_attach(self):
-		""" Attach a Node to itself """
-		""""create up down links first? 
-		#test_node = Node(0,0)
-		#test_node.attach()
-		#self.assertEqual(test_node.down.up, self)"""
-		
 	def test_head(self):
 		""" Set the Head """
 		test_head = Head(0)
@@ -144,22 +139,14 @@ class AlgorithmXTest( unittest.TestCase):
 		test_matrix = Matrix([ [1, 0], [0, 1] ])
 		self.assertEqual(test_matrix.head.column, -1)
 		
-	"""def test_generic_x_4(self):
+	def test_matrix_head_links(self):
+		test_matrix = Matrix([ [1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [1, 0, 0,1] ])
+		col = test_matrix.columns
+		right = col[0][0].right
+		print(type(right))
 		
-		TODO: pass in 4x4 matrix, and expect result to be empty matrix
 		
-		self.assertEqual( generic_x(), [ [], [], [], [] ])
-		
-	def test_generic_x_6(self):
-	
-		TODO: pass in 6x6 matrix, and expect result to be empty matrix
-		self.assertEqual( generic_x(),  [ [], [], [],  [], [], [] ])
-		
-	def test_generic_x_8(self):
-		TODO: pass in 8x8 matrix, and expect result to be empty matrix
-		self.assertEqual( generic_x(), [ [], [], [], [], [],  [], [], [] ])
-		TODO: Create additional test for unsolvable constraints.  
-	"""
+
 def main():
 	unittest.main()	
 		

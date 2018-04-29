@@ -26,40 +26,46 @@ class Head:
 		self.right.left = self.left.right = self
 		
 class Matrix:
-	"""TODO: Mason implement """ 
 	def linkLeftRight(self, srows):
 		for srow in srows:
 			n = len(srow)
-			for j in range(n):
+			j = 1 
+			while j < n:
 				srow[j].right = srow[(j + 1) % n]
 				srow[j].left = srow[(j - 1 + n) % n]
+				j +=1
 
 	def linkUpDown(self, scols):
 		for scol in scols:
 			n = len(scol)
-			for i in range(n):
+			i = 1
+			while i < n:
 				scol[i].down = scol[(i + 1) % n]
 				scol[i].up = scol[(i - 1 + n) % n]
 				scol[i].head = scol[0]
+				i += 1
 
-	def __init__(self, mat):
-		nrows = len(mat)
-		ncols = len(mat[0])
-		srow = [[ ] for _ in range(nrows)]
-		heads = [Head(j) for j in range(ncols)]        
+	def __init__(self, matrix):
+		numberOfRows = len(matrix)
+		numberOfColumns = len(matrix[0])
+		srow = [[ ] for _ in range(numberOfRows)]
+		heads = [Head(j) for j in range(numberOfColumns)]
 		scol = [[head] for head in heads]
 
 		# Master Head 
 		self.head = Head(-1)
 		heads = [self.head] + heads
 		self.linkLeftRight([heads])
-
-		for i in range(nrows):
-			for j in range(ncols):
-				if mat[i][j] == 1:
+		i = 1
+		while i < numberOfRows:
+			j = 1
+			while j < numberOfColumns:
+				if matrix[i][j] == 1:
 					node = Node(i, j)
 					scol[j].append(node)
 					srow[i].append(node)
+				j += 1
+			i += 1
 
 		self.linkLeftRight(srow)
 		self.linkUpDown(scol)

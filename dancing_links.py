@@ -109,28 +109,22 @@ class AlgorithmXTest( unittest.TestCase):
 		test_matrix = Matrix([ [1, 0], [0, 1] ])
 		self.assertEqual(test_matrix.head.col, -1)
 		
-	def test_generic_x_4(self):
-		"""
+	"""def test_generic_x_4(self):
+		
 		TODO: pass in 4x4 matrix, and expect result to be empty matrix
-		""" 
+		
 		self.assertEqual( generic_x(), [ [], [], [], [] ])
 		
 	def test_generic_x_6(self):
-		"""
+	
 		TODO: pass in 6x6 matrix, and expect result to be empty matrix
-		"""
 		self.assertEqual( generic_x(),  [ [], [], [],  [], [], [] ])
 		
 	def test_generic_x_8(self):
-		"""
 		TODO: pass in 8x8 matrix, and expect result to be empty matrix
-		"""
 		self.assertEqual( generic_x(), [ [], [], [], [], [],  [], [], [] ])
-		
+		TODO: Create additional test for unsolvable constraints.  
 	"""
-		TODO: Create additional test for unsolvable constraints. 
-	""" 
-	
 def main():
 	unittest.main()	
 		

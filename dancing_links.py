@@ -141,6 +141,7 @@ class AlgorithmXTest(unittest.TestCase):
 		self.assertEqual(test_matrix.head.column, -1)
 		
 	def test_matrix_head_links_left(self):
+		"""Test the left directional links between heads"""
 		test_matrix = Matrix([ [1, 1, 1, 1], [0, 1, 1, 1], [0, 0, 1, 0], [1, 0, 0,1] ])
 		col = test_matrix.columns
 		test_head = col[0][0].left
@@ -152,6 +153,7 @@ class AlgorithmXTest(unittest.TestCase):
 		self.assertEqual(num, 4)
 		
 	def test_matrix_head_links_right(self):
+		"""Test the right directional links between heads"""
 		test_matrix = Matrix([ [1, 0, 1, 1], [0, 0, 1, 1], [1, 0, 0, 0], [1, 0, 0, 0] ])
 		col = test_matrix.columns
 		test_head = col[0][0].left
@@ -163,6 +165,7 @@ class AlgorithmXTest(unittest.TestCase):
 		self.assertEqual(num, 4)
 	
 	def test_node_links(self):
+		"""Test that the nodes are linked"""
 		test_matrix = Matrix([ [1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [1, 0, 0,1] ])
 		col = test_matrix.columns
 		right = col[0][0]
@@ -171,6 +174,7 @@ class AlgorithmXTest(unittest.TestCase):
 		self.assertEqual(type(right), Node)
 	
 	def test_master_head_node_down_link(self):
+		""" Test down circular links for the master head node"""
 		test_matrix = Matrix([ [1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [1, 0, 0,1] ])
 		col = test_matrix.columns
 		right = col[0][0]
@@ -181,6 +185,7 @@ class AlgorithmXTest(unittest.TestCase):
 		self.assertEqual(right, col[0][0])
 	
 	def test_master_head_node_up_link(self):
+		"""Test up links for the master head node"""
 		test_matrix = Matrix([ [1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [1, 0, 0,1] ])
 		col = test_matrix.columns
 		right = col[0][0]

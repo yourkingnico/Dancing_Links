@@ -195,7 +195,14 @@ class AlgorithmXTest(unittest.TestCase):
 		
 	def test_linkLeftRight(self):
 		"""Test linkLeftRight function"""
-		
+		test_matrix = Matrix([ [1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [1, 0, 0,1] ])
+		row = test_matrix.rows
+		test_rows = row[1][1]
+		test_rows = test_rows.right
+		test_rows = test_rows.right
+		test_rows = test_rows.left
+		test_rows = test_rows.left
+		self.assertEqual(test_rows, row[1][1])
 		
 
 def main():

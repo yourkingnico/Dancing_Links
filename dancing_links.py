@@ -58,9 +58,9 @@ class Matrix:
 		self.head = Head(-1)
 		heads = [self.head] + heads
 		self.linkLeftRight([heads])
-		i = 1
+		i = 0
 		while i < numberOfRows:
-			j = 1
+			j = 0
 			while j < numberOfColumns:
 				if matrix[i][j] == 1:
 					node = Node(i, j)
@@ -185,7 +185,7 @@ class AlgorithmXTest(unittest.TestCase):
 	
 	def test_node_down_link(self):
 		""" Test down circular links for the nodes"""
-		test_matrix = Matrix([ [1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [1, 0, 0,1] ])
+		test_matrix = Matrix([ [0, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [0, 0, 0,1] ])
 		col = test_matrix.columns
 		right = col[0][0]
 		right = right.down
@@ -195,7 +195,7 @@ class AlgorithmXTest(unittest.TestCase):
 	
 	def test_node_up_link(self):
 		"""Test up links for the nodes"""
-		test_matrix = Matrix([ [1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [1, 0, 0,1] ])
+		test_matrix = Matrix([ [0, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [0, 0, 0,1] ])
 		col = test_matrix.columns
 		right = col[0][0]
 		right = right.up

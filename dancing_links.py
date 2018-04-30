@@ -50,7 +50,7 @@ class Matrix:
 		"""
 		numberOfRows = len(matrix)
 		numberOfColumns = len(matrix[0])
-		row = [[ ] for _ in range(numberOfRows)]
+		rows = [[ ] for _ in range(numberOfRows)]
 		heads = [Head(j) for j in range(numberOfColumns)]
 		column = [[head] for head in heads]
 
@@ -65,13 +65,13 @@ class Matrix:
 				if matrix[i][j] == 1:
 					node = Node(i, j)
 					column[j].append(node)
-					row[i].append(node)
+					rows[i].append(node)
 				j += 1
 			i += 1
 
-		self.linkLeftRight(row)
+		self.linkLeftRight(rows)
 		self.linkUpDown(column)
-		self.rows = row
+		self.rows = rows
 		self.columns = column
 		
 		
@@ -192,6 +192,10 @@ class AlgorithmXTest(unittest.TestCase):
 		self.assertEqual(right, col[0][0])
 		right = right.up
 		self.assertEqual(right, col[0][0])
+		
+	def test_linkLeftRight(self):
+		"""Test linkLeftRight function"""
+		
 		
 
 def main():

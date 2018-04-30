@@ -53,9 +53,8 @@ class Matrix:
 		rows = [[ ] for _ in range(numberOfRows)]
 		heads = [Head(j) for j in range(numberOfColumns)]
 		columns = [[head] for head in heads]
-
-		# Master Head 
 		self.head = Head(-1)
+		#mark head as master 
 		heads = [self.head] + heads
 		self.linkLeftRight([heads])
 		i = 0
@@ -68,7 +67,6 @@ class Matrix:
 					rows[i].append(node)
 				j += 1
 			i += 1
-
 		self.linkLeftRight(rows)
 		self.linkUpDown(columns)
 		self.rows = rows
@@ -77,7 +75,6 @@ class Matrix:
 		
 	def linkLeftRight(self, rows):
 		""" link the rows on the left and right
-
 		:param rows: the rows being linked
 		:type rows: list
 		"""
@@ -91,7 +88,6 @@ class Matrix:
 
 	def linkUpDown(self, columns):
 		""" link the columns up and down
-
 		:param columns: the columns being linked
 		:type columns: list
 		"""
@@ -104,39 +100,21 @@ class Matrix:
 				column[i].head = column[0]
 				i += 1
 
-	
-class AlgorithmX:
-	"""TODO: implement """ 
-def generic_x(matrix):
-	""" 
-		TODO: implement this and additional data structures
-		.. generic_x: Construct an internal, working version of the matrix as a grid of linked lists. Backtrack recursively on the matrix, removing 
-		and restoring columns and rows, until an empty matrix is obtained
-
-		:param matrix: 2-dimensional array to be passes as input
-		:type matrix: array<array<boolean>>?
-		:return: 2-dimensional array
-		:rtype: array
-	""" 
-
-	return None 
-
-
 class AlgorithmXTest(unittest.TestCase):
 
 	def test_node(self):
-		""" Make a Node  """
+		""" Make a Node and verify initialized values  """
 		my_node = Node(0,0)
 		self.assertEqual(my_node.row, 0)
 		self.assertEqual(my_node.column, 0)
 		
 	def test_head(self):
-		""" Set the Head """
+		"""Make a Head and verify initialized value"""
 		test_head = Head(0)
 		self.assertEqual(test_head.column, 0)
 		
 	def test_matrix_head(self):
-		""" Make sure head is right for a 2x2 matrix """
+		""" Make sure master head is initialized right for a 2x2 matrix """
 		test_matrix = Matrix([ [1, 0], [0, 1] ])
 		self.assertEqual(test_matrix.head.column, -1)
 		
@@ -175,7 +153,7 @@ class AlgorithmXTest(unittest.TestCase):
 		self.assertEqual(num, 4)
 	
 	def test_node_links(self):
-		"""Test that the nodes are linked"""
+		"""Test that the nodes are linked, and pointing to correct type"""
 		test_matrix = Matrix([ [1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [1, 0, 0,1] ])
 		col = test_matrix.columns
 		right = col[0][0]

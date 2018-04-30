@@ -52,7 +52,7 @@ class Matrix:
 		numberOfColumns = len(matrix[0])
 		rows = [[ ] for _ in range(numberOfRows)]
 		heads = [Head(j) for j in range(numberOfColumns)]
-		column = [[head] for head in heads]
+		columns = [[head] for head in heads]
 
 		# Master Head 
 		self.head = Head(-1)
@@ -64,15 +64,15 @@ class Matrix:
 			while j < numberOfColumns:
 				if matrix[i][j] == 1:
 					node = Node(i, j)
-					column[j].append(node)
+					columns[j].append(node)
 					rows[i].append(node)
 				j += 1
 			i += 1
 
 		self.linkLeftRight(rows)
-		self.linkUpDown(column)
+		self.linkUpDown(columns)
 		self.rows = rows
-		self.columns = column
+		self.columns = columns
 		
 		
 	def linkLeftRight(self, rows):
@@ -139,6 +139,16 @@ class AlgorithmXTest(unittest.TestCase):
 		""" Make sure head is right for a 2x2 matrix """
 		test_matrix = Matrix([ [1, 0], [0, 1] ])
 		self.assertEqual(test_matrix.head.column, -1)
+		
+	def test_head_without_nodes(self):
+		"""Test that a matrix with no 1's does not make Node instances attached to the heads"""
+		test_matrix = Matrix([ [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0] ])
+		col = test_matrix.columns
+		first_head = col[0][0].left
+		next_head = first_head.right
+		while(next_head.column is not -1):
+			self.assertEqual(next_head, next_head.down)
+			next_head = next_head.right
 		
 	def test_matrix_head_links_left(self):
 		"""Test the left directional links between heads"""

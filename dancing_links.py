@@ -210,6 +210,7 @@ class AlgorithmXTest(unittest.TestCase):
 		test_rows = row[1][1]
 		test_rows = test_rows.right
 		test_rows = test_rows.right
+		self.assertFalse(test_rows == row[1][1])
 		test_rows = test_rows.left
 		test_rows = test_rows.left
 		self.assertEqual(test_rows, row[1][1])

@@ -5,7 +5,6 @@ import unittest
 class Node:
 	def __init__(self, row, column):
 		""" Initialize a Node
-
 		:param row: the row of the node
 		:param column: the column of the node
 		:type row: list
@@ -26,45 +25,42 @@ class Node:
 class Head:
 	def __init__(self, column):
 		""" Initialize a Head
-
 		:param column: the column that will be the head
 		:type column: int
 		"""
 		self.column = column
-
-	def deattach(self):
-		""" Deattach the Head """
-		self.left.right = self.right
-		self.right.left = self.left
-
+		
 	def attach(self):
 		""" Attach the Head """
 		self.right.left = self.left.right = self
 		
+	def deattach(self):
+		""" Deattach the Head """
+		self.left.right = self.right
+		self.right.left = self.left	
+		
 class Matrix:
 	def __init__(self, matrix):
-		""" Initialize a Matrix
-
-		:param matrix: the matrix being initialized
+		""" Initialize a Matrix and add appropriate linkage
+		:param matrix: the binary matrix being initialized
 		:type matrix: list
 		"""
-		numberOfRows = len(matrix)
 		numberOfColumns = len(matrix[0])
+		numberOfRows = len(matrix)
 		rows = [[ ] for _ in range(numberOfRows)]
 		heads = [Head(j) for j in range(numberOfColumns)]
 		columns = [[head] for head in heads]
 		self.head = Head(-1)
 		#mark head as master 
-		heads = [self.head] + heads
-		self.link_left_right([heads])
+		self.link_left_right([[self.head] + heads])
 		i = 0
 		while i < numberOfRows:
 			j = 0
 			while j < numberOfColumns:
-				if matrix[i][j] == 1:
-					node = Node(i, j)
-					columns[j].append(node)
-					rows[i].append(node)
+				if matrix[i][j] is 1:
+					new_node = Node(i, j)
+					columns[j].append(new_node)
+					rows[i].append(new_node)
 				j += 1
 			i += 1
 		self.link_left_right(rows)
@@ -72,19 +68,18 @@ class Matrix:
 		self.rows = rows
 		self.columns = columns
 		
-		
 	def link_left_right(self, rows):
 		""" link the rows on the left and right
 		:param rows: the rows being linked
 		:type rows: list
 		"""
 		for row in rows:
-			n = len(row)
-			j = 0
-			while j < n:
-				row[j].right = row[(j + 1) % n]
-				row[j].left = row[(j - 1 + n) % n]
-				j +=1
+			index = 0
+			num_rows = len(row)
+			while index < num_rows:
+				row[index].right = row[(index + 1) % num_rows]
+				row[index].left = row[(index - 1 + num_rows) % num_rows]
+				index +=1
 
 	def link_up_down(self, columns):
 		""" link the columns up and down
@@ -93,14 +88,14 @@ class Matrix:
 		"""
 		for column in columns:
 			n = len(column)
-			i = 0
-			while i < n:
-				column[i].down = column[(i + 1) % n]
-				column[i].up = column[(i - 1 + n) % n]
-				column[i].head = column[0]
-				i += 1
+			index = 0
+			while index < n:
+				column[index].down = column[(index + 1) % n]
+				column[index].up = column[(index - 1 + n) % n]
+				column[index].head = column[0]
+				index += 1
 
-class AlgorithmXTest(unittest.TestCase):
+class Matrix_Test(unittest.TestCase):
 
 	def test_node(self):
 		""" Make a Node and verify initialized values  """
@@ -182,17 +177,17 @@ class AlgorithmXTest(unittest.TestCase):
 		self.assertEqual(right, col[0][0])
 		
 	def test_link_left_right(self):
-		"""Test link_left_right function"""
+		"""Test link_left_right function for linkage verification"""
 		test_matrix = Matrix([ [1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [1, 0, 0,1] ])
 		row = test_matrix.rows
 		test_rows = row[1][1]
 		test_rows = test_rows.right
 		test_rows = test_rows.right
+		#check that different node is visited
 		self.assertFalse(test_rows == row[1][1])
 		test_rows = test_rows.left
 		test_rows = test_rows.left
 		self.assertEqual(test_rows, row[1][1])
-		
 
 def main():
 	unittest.main()	

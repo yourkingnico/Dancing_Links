@@ -56,7 +56,7 @@ class Matrix:
 		self.head = Head(-1)
 		#mark head as master 
 		heads = [self.head] + heads
-		self.linkLeftRight([heads])
+		self.link_left_right([heads])
 		i = 0
 		while i < numberOfRows:
 			j = 0
@@ -67,13 +67,13 @@ class Matrix:
 					rows[i].append(node)
 				j += 1
 			i += 1
-		self.linkLeftRight(rows)
-		self.linkUpDown(columns)
+		self.link_left_right(rows)
+		self.link_up_down(columns)
 		self.rows = rows
 		self.columns = columns
 		
 		
-	def linkLeftRight(self, rows):
+	def link_left_right(self, rows):
 		""" link the rows on the left and right
 		:param rows: the rows being linked
 		:type rows: list
@@ -86,7 +86,7 @@ class Matrix:
 				row[j].left = row[(j - 1 + n) % n]
 				j +=1
 
-	def linkUpDown(self, columns):
+	def link_up_down(self, columns):
 		""" link the columns up and down
 		:param columns: the columns being linked
 		:type columns: list
@@ -162,7 +162,7 @@ class AlgorithmXTest(unittest.TestCase):
 		self.assertEqual(type(right), Node)
 	
 	def test_node_down_link(self):
-		""" Test down circular links for the nodes"""
+		""" Test that down links for the nodes are infinitely circular"""
 		test_matrix = Matrix([ [0, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [0, 0, 0,1] ])
 		col = test_matrix.columns
 		right = col[0][0]
@@ -172,7 +172,7 @@ class AlgorithmXTest(unittest.TestCase):
 		self.assertEqual(right, col[0][0])
 	
 	def test_node_up_link(self):
-		"""Test up links for the nodes"""
+		"""Test that up links for the nodes are infinitely circular"""
 		test_matrix = Matrix([ [0, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [0, 0, 0,1] ])
 		col = test_matrix.columns
 		right = col[0][0]
@@ -181,8 +181,8 @@ class AlgorithmXTest(unittest.TestCase):
 		right = right.up
 		self.assertEqual(right, col[0][0])
 		
-	def test_linkLeftRight(self):
-		"""Test linkLeftRight function"""
+	def test_link_left_right(self):
+		"""Test link_left_right function"""
 		test_matrix = Matrix([ [1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [1, 0, 0,1] ])
 		row = test_matrix.rows
 		test_rows = row[1][1]

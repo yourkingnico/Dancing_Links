@@ -173,23 +173,21 @@ class AlgorithmXTest(unittest.TestCase):
 		right = right.down
 		self.assertEqual(type(right), Node)
 	
-	def test_master_head_node_down_link(self):
-		""" Test down circular links for the master head node"""
+	def test_node_down_link(self):
+		""" Test down circular links for the nodes"""
 		test_matrix = Matrix([ [1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [1, 0, 0,1] ])
 		col = test_matrix.columns
 		right = col[0][0]
-		right.left
 		right = right.down
 		self.assertEqual(right, col[0][0])
 		right = right.down
 		self.assertEqual(right, col[0][0])
 	
-	def test_master_head_node_up_link(self):
-		"""Test up links for the master head node"""
+	def test_node_up_link(self):
+		"""Test up links for the nodes"""
 		test_matrix = Matrix([ [1, 0, 0, 0], [0, 1, 1, 1], [0, 0, 1, 0], [1, 0, 0,1] ])
 		col = test_matrix.columns
 		right = col[0][0]
-		right.left
 		right = right.up
 		self.assertEqual(right, col[0][0])
 		right = right.up
